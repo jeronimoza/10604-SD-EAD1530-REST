@@ -16,6 +16,7 @@ type
     function calcularTempoPreparo(const APizzaTamanho: TPizzaTamanhoEnum; const APizzaSabor: TPizzaSaborEnum): Integer;
   public
     function efetuarPedido(const APizzaTamanho: TPizzaTamanhoEnum; const APizzaSabor: TPizzaSaborEnum; const ADocumentoCliente: String): TPedidoRetornoDTO;
+    function BuscarPedido(const ADocumentoCliente: string): TPedidoRetornoDTO;
 
     constructor Create; reintroduce;
   end;
@@ -26,6 +27,11 @@ uses
   UPedidoRepositoryImpl, System.SysUtils, UClienteServiceImpl;
 
 { TPedidoService }
+
+function TPedidoService.BuscarPedido(const ADocumentoCliente: string): TPedidoRetornoDTO;
+begin
+  Result := FPedidoRepository.BuscarPedido(ADocumentoCliente);
+end;
 
 function TPedidoService.calcularTempoPreparo(const APizzaTamanho: TPizzaTamanhoEnum; const APizzaSabor: TPizzaSaborEnum): Integer;
 begin
